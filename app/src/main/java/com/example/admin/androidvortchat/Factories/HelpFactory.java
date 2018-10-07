@@ -1,5 +1,7 @@
 package com.example.admin.androidvortchat.Factories;
 
+import android.util.Log;
+
 import com.example.admin.androidvortchat.Factories.interfaces.FactoryInterface;
 import com.example.admin.androidvortchat.Factories.interfaces.ObjectInterface;
 import com.example.admin.androidvortchat.socket.SocketListener;
@@ -7,7 +9,10 @@ import com.example.admin.androidvortchat.socket.SocketListener;
 import java.util.ArrayList;
 
 public class HelpFactory implements FactoryInterface {
+    public static final String SOCKET_LISTENER = "SocketListener";
+
     private static FactoryInterface helpFactory = null;
+
     private ArrayList<ObjectInterface> objectList;
     void HelpFactory(){ }
     @Override
@@ -26,9 +31,11 @@ public class HelpFactory implements FactoryInterface {
 
     @Override
     public ObjectInterface getObj(String objName) throws Exception {
-        Integer index = this.objectList.indexOf(objName);
-        if(index >= 0){
-            return this.objectList.get(index);
+        for(int i = 0; i < this.objectList.size();i++){
+            ObjectInterface obj = this.objectList.get(i);
+            if(obj.getClass().getSimpleName().equals(objName)){
+                return obj;
+            }
         }
         throw new Exception("Factory does not have obj called "+objName);
     }

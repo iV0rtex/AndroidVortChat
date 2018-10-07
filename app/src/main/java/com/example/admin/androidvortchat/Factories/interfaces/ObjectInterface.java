@@ -1,5 +1,8 @@
 package com.example.admin.androidvortchat.Factories.interfaces;
 
-public interface ObjectInterface {
+import com.example.admin.androidvortchat.socket.observer.ObsInterface;
 
+public interface ObjectInterface {
+    void registerObs(ObsInterface obs);
+    void informAll(Object... arg);
 }
