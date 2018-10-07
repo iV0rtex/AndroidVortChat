@@ -1,5 +1,6 @@
 package com.example.admin.androidvortchat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText input = findViewById(R.id.editText);
                 String text = input.getText().toString();
-                Intent intent = getIntent();
-
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ChatActivity.class);
+                context.startActivity(intent);
+                finish();
             }
         });
 
