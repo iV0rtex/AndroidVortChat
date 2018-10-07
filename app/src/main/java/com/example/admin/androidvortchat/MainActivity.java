@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText input = findViewById(R.id.editText);
                 String text = input.getText().toString();
+
                 Context context = v.getContext();
                 Intent intent = new Intent(context, ChatActivity.class);
                 context.startActivity(intent);
