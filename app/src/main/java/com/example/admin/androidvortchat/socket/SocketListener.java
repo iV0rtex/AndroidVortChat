@@ -23,7 +23,7 @@ public class SocketListener implements ObjectInterface {
             IO.Options opts = new IO.Options();
             opts.forceNew = true;
             opts.reconnection = false;
-            this.socket = IO.socket("http://192.168.0.100:3000",opts);
+            this.socket = IO.socket("http://192.168.0.101:3000",opts);
         } catch (URISyntaxException e) {
             //TODO: Need to finish App
             Log.d("ChatStatus","ERROR");
@@ -31,12 +31,12 @@ public class SocketListener implements ObjectInterface {
         this.socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                //SocketListener.this.informAll(args[0],Socket.EVENT_CONNECT);//TODO: something wrong here. MB need to delete and do not worry about it.
+                //SocketListener.this.informAll(args[0],Socket.EVENT_CONNECT);//TODO:  status connected to the server. In the future need to start App only after connect.
             }
         }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                SocketListener.this.informAll(args[0],Socket.EVENT_DISCONNECT);
+                SocketListener.this.informAll(args[0],Socket.EVENT_DISCONNECT);//TODO: disconnected to the server status.
             }
         }).on(SocketListener.EVENT_CHECK_USER, new Emitter.Listener() {
             @Override
